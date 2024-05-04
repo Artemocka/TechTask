@@ -1,7 +1,5 @@
 package com.dracul.techtask.domain.models
 
-import com.example.technotestvk.data.Products
-
 data class Page(
     val index: Int = 0,
 ) {

@@ -9,7 +9,9 @@ import com.dracul.techtask.databinding.ItemProductBinding
 import com.example.technotestvk.data.Product
 
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductItemCallBack()) {
+class ProductAdapter(
+    val listener:OnItemListener
+) : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductItemCallBack()){
 
     init {
         setHasStableIds(true)
@@ -34,6 +36,9 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductIt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = currentList[position]
         holder.bind(item)
+        if (position == itemCount.dec()) {
+            listener.onEnd()
+        }
     }
 
 
@@ -42,7 +47,6 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductIt
             binding.run {
                 price.text = "$${item.price}"
                 title.text = item.title
-                description.text = item.description
                 Glide
                     .with(binding.root)
                     .load(item.thumbnail)
@@ -50,6 +54,9 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(ProductIt
             }
         }
     }
-}
+    interface OnItemListener {
+        fun onEnd()
+    }
 
+}
 

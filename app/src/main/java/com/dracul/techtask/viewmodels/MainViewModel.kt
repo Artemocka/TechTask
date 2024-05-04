@@ -16,6 +16,7 @@ import javax.inject.Inject
 class MainViewModel : ViewModel() {
     @Inject
     lateinit var getPageUseCase: GetPageUseCase
+    private var page = Page(0)
 
     val listProduct = MutableStateFlow<List<Product>>(emptyList())
     init {
@@ -26,12 +27,18 @@ class MainViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.Main.immediate) {
             try {
-                listProduct.value=getPageUseCase.execute(Page(index = 0)).products
+                listProduct.value+=getPageUseCase.execute(page).products
 
             } catch (e:Exception){
                 Log.e("",e.message.toString())
             }
         }
+    }
+
+    fun nextPage() {
+        val index = page.index
+        page = page.copy(index = index.inc())
+        getProducts()
     }
 
 }

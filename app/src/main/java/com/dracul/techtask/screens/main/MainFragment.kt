@@ -21,10 +21,10 @@ import com.dracul.techtask.viewmodels.MainViewModel
 import kotlinx.coroutines.launch
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), ProductAdapter.OnItemListener {
     private lateinit var binding: FragmentMainBinding
     private val viewModel by viewModels<MainViewModel>()
-    private val adapter = ProductAdapter()
+    private val adapter = ProductAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        lifecycleScope.launch {
@@ -32,8 +32,6 @@ class MainFragment : Fragment() {
                adapter.submitList(it)
            }
        }
-        Log.e("",adapter.currentList.size.toString())
-        Log.e("","?")
     }
 
     override fun onCreateView(
@@ -54,6 +52,11 @@ class MainFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onEnd() {
+        viewModel.nextPage()
+        Log.e(""," pagination")
     }
 
 
