@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+
 }
 
 android {
@@ -36,11 +38,12 @@ android {
 }
 
 dependencies {
+    kapt(libs.dagger.compiler.v2511)
+    implementation(libs.dagger.v2511)
 
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation (libs.dagger)
-    annotationProcessor (libs.dagger.compiler)
     implementation(libs.retrofit)
     implementation(libs.glide)
     implementation(libs.androidx.core.ktx)

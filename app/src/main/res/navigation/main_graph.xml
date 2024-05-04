@@ -6,7 +6,6 @@
     android:id="@+id/main_graph"
     app:startDestination="@id/mainFragment"
     >
-
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.dracul.techtask.screens.main.MainFragment"

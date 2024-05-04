@@ -1,7 +1,5 @@
 [versions]
 agp = "8.4.0"
-daggerCompiler = "2.51.1"
-dagger = "2.51.1"
 glide = "4.16.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -9,19 +7,21 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
-material = "1.10.0"
+material = "1.11.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 navigationUiKtx = "2.7.7"
 navigationFragmentKtx = "2.7.7"
 retrofit = "2.11.0"
-
+daggerCompilerVersion = "2.51.1"
+daggerVersion = "2.51.1"
+jetbrainsKotlinJvm = "1.9.0"
 [libraries]
+dagger-compiler-v2511 = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompilerVersion" }
+dagger-v2511 = { module = "com.google.dagger:dagger", version.ref = "daggerVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
-dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -35,4 +35,5 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
