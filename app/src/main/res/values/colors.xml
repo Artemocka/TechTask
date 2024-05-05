@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#ECEDF1</color>
+    <color name="card_color">#FFFFFF</color>
+    <color name="bold_text_color">#070707</color>
+    <color name="text_color">#2D2D2D</color>
+    <color name="light_text_color">#9CA4AF</color>
+    <color name="price_text_color">#10C44C</color>
+    <color name="button_color">#F4F4F4</color>
+    <color name="button_text_color">#818C99</color>
+    <color name="iv_color">#909499</color>
+    <color name="button_ripple_color">#C2C2C2</color>
+
 </resources>

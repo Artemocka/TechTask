@@ -1,7 +1,7 @@
 package com.dracul.techtask.screens.main.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.technotestvk.data.Product
+import com.dracul.techtask.domain.models.Product
 
 class ProductItemCallBack : DiffUtil.ItemCallback<Product>() {
     override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {

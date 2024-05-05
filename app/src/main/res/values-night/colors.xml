@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#060606</color>
+    <color name="card_color">#191919</color>
+    <color name="bold_text_color">#E7E6EB</color>
+    <color name="text_color">#C7C8CA</color>
+    <color name="light_text_color">#797979</color>
+    <color name="price_text_color">#10C44C</color>
+    <color name="button_color">#232324</color>
+    <color name="button_text_color">#AAAEB3</color>
+    <color name="iv_color">#99A2AD</color>
+    <color name="button_ripple_color">#515152</color>
+
+</resources>

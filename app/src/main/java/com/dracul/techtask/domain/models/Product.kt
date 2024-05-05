@@ -1,4 +1,4 @@
-package com.example.technotestvk.data
+package com.dracul.techtask.domain.models
 
 
 data class Product(

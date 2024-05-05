@@ -1,7 +1,7 @@
 package com.dracul.techtask.data.api
 
-import com.example.technotestvk.data.Product
-import com.example.technotestvk.data.Products
+import com.dracul.techtask.domain.models.Product
+import com.dracul.techtask.domain.models.Products
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

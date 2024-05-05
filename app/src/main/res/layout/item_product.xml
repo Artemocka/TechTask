@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:foreground="?selectableItemBackground"
+    app:cardBackgroundColor="@color/card_color"
     app:cardCornerRadius="16dp"
     >
 
@@ -33,10 +34,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="4dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/thumbnail"
             tools:text="1200"
+            android:textColor="@color/price_text_color"
+            android:textStyle="bold"
+
             />
 
         <TextView
@@ -45,24 +49,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="8dp"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/price"
-            tools:text="Nothing Phone"
-            />
-
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="8dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Nothing phone best phone and etc."
+            tools:text="Nothing Phone"
+            android:textColor="@color/bold_text_color"
             />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

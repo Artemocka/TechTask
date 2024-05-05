@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dracul.techtask.databinding.ItemProductBinding
-import com.example.technotestvk.data.Product
+import com.dracul.techtask.domain.models.Product
 
 
 class ProductAdapter(
@@ -47,6 +47,9 @@ class ProductAdapter(
             binding.run {
                 price.text = "$${item.price}"
                 title.text = item.title
+
+
+
                 Glide
                     .with(binding.root)
                     .load(item.thumbnail)
