@@ -18,13 +18,12 @@
         android:orientation="vertical"
         >
 
-        <ImageView
-            android:id="@+id/thumbnail"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_thumbnails"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="?colorSurfaceContainerLow"
-            android:scaleType="fitXY"
-            app:layout_constraintDimensionRatio="W,1:1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -34,12 +33,12 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="4dp"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/thumbnail"
-            tools:text="1200"
             android:textColor="@color/price_text_color"
+            android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_thumbnails"
+            tools:text="1200"
 
             />
 
@@ -49,14 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/bold_text_color"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/price"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price"
             tools:text="Nothing Phone"
-            android:textColor="@color/bold_text_color"
             />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

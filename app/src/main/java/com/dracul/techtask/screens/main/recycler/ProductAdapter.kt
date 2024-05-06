@@ -2,11 +2,14 @@ package com.dracul.techtask.screens.main.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.SnapHelper
 import com.dracul.techtask.databinding.ItemProductBinding
 import com.dracul.techtask.domain.models.Product
+import com.dracul.techtask.screens.main.imagerecycler.ImageAdapter
 
 
 class ProductAdapter(
@@ -43,23 +46,22 @@ class ProductAdapter(
 
 
     class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val adapter = ImageAdapter()
         fun bind(item: Product) {
+            adapter.submitList(item.images)
             binding.run {
                 price.text = "$${item.price}"
                 title.text = item.title
+                rvThumbnails.adapter= adapter
+                rvThumbnails.onFlingListener = null
+                val snapHelper = PagerSnapHelper()
+                snapHelper.attachToRecyclerView(rvThumbnails)
 
-
-
-                Glide
-                    .with(binding.root)
-                    .load(item.thumbnail)
-                    .into(thumbnail)
             }
         }
     }
     interface OnItemListener {
         fun onEnd()
     }
-
 }
 
