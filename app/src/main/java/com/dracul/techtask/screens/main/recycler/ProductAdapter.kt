@@ -30,10 +30,7 @@ class ProductAdapter(
             LayoutInflater.from(parent.context), parent, false
         )
         val viewHolder = ViewHolder(binding)
-
-
         return viewHolder
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -54,9 +51,9 @@ class ProductAdapter(
                 title.text = item.title
                 rvThumbnails.adapter= adapter
                 rvThumbnails.onFlingListener = null
+                rvThumbnails.setHasFixedSize(true)
                 val snapHelper = PagerSnapHelper()
                 snapHelper.attachToRecyclerView(rvThumbnails)
-
             }
         }
     }

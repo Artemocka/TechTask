@@ -68,6 +68,7 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener {
         binding.run {
             rvList.layoutManager = GridLayoutManager(context, 2)
             rvList.adapter = adapter
+            rvList.setHasFixedSize(true)
             binding.btnTryAgain.setOnClickListener {
                 viewModel.reloadPage()
             }
@@ -84,8 +85,5 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener {
 
     override fun onEnd() {
         viewModel.nextPage()
-        Log.e("", " pagination")
     }
-
-
 }
