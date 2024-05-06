@@ -1,7 +1,8 @@
-package com.example.technotestvk.chips
+package com.dracul.techtask.screens.main.chiprecycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.technotestvk.data.FilterChip
+import com.dracul.techtask.domain.models.FilterChip
+
 
 class ChipsDiffCallback: DiffUtil.ItemCallback<FilterChip>() {
     override fun areItemsTheSame(oldItem: FilterChip, newItem: FilterChip): Boolean {

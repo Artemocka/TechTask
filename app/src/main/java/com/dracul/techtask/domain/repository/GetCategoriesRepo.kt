@@ -5,5 +5,5 @@ import com.dracul.techtask.domain.models.Product
 import com.dracul.techtask.domain.models.Products
 
 interface GetCategoriesRepo {
-    suspend fun get(page: Page): Pair<List<String>, String?>
+    suspend fun get(): Pair<List<String>, String?>
 }

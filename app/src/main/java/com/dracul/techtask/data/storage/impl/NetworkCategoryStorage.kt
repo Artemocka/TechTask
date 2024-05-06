@@ -10,7 +10,7 @@ import javax.inject.Inject
 class NetworkCategoryStorage @Inject constructor(
     val api: ProductApi,
 ) : CategoriesStorage {
-    override suspend fun get(page: Page): Pair<List<String>, String?> {
+    override suspend fun get(): Pair<List<String>, String?> {
 
         var products: List<String> = emptyList()
         var errorMessage:String? = null

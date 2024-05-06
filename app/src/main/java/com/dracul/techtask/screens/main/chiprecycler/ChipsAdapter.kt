@@ -1,13 +1,15 @@
-package com.example.technotestvk.chips
+package com.dracul.techtask.screens.main.chiprecycler
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.technotestvk.data.FilterChip
-import com.example.technotestvk.databinding.ItemChipBinding
-import com.example.technotestvk.screens.main.recycler.OnItemListener
+import com.dracul.techtask.R
+import com.dracul.techtask.databinding.ItemChipBinding
+import com.dracul.techtask.domain.models.FilterChip
+import com.google.android.material.chip.Chip
 
 
 class ChipsAdapter(private val listener: OnChipListner) : ListAdapter<FilterChip, ChipsAdapter.ViewHolder>(ChipsDiffCallback()) {
@@ -28,18 +30,7 @@ class ChipsAdapter(private val listener: OnChipListner) : ListAdapter<FilterChip
 
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener {
-            val list = currentList.toMutableList()
-            list.forEachIndexed { index, filterChip ->
-                if (index == viewHolder.adapterPosition) {
-                    list[index] = filterChip.copy(isChecked = !filterChip.isChecked)
-                    listener.onChipChecked(filterChip.name.takeIf { !filterChip.isChecked })
-                } else if (filterChip.isChecked) {
-                    list[index] = filterChip.copy(isChecked = false)
-                }
-            }
-            submitList(list)
-
-
+            listener.onChipChecked((it as Chip).text.toString())
         }
         return viewHolder
     }
@@ -61,7 +52,7 @@ class ChipsAdapter(private val listener: OnChipListner) : ListAdapter<FilterChip
     }
 
     interface OnChipListner {
-        fun onChipChecked(category: String?)
+        fun onChipChecked(category: String)
     }
 
 }

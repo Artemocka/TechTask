@@ -9,7 +9,7 @@ class GetCategoriesImpl @Inject constructor(
     val categoriesStorage: CategoriesStorage
 ) : GetCategoriesRepo {
 
-    override suspend fun get(page: Page): Pair<List<String>, String?> {
-        return categoriesStorage.get(page)
+    override suspend fun get(): Pair<List<String>, String?> {
+        return categoriesStorage.get()
     }
 }

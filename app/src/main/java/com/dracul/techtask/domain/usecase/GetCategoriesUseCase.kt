@@ -10,7 +10,7 @@ import javax.inject.Inject
 class GetCategoriesUseCase @Inject constructor(
     val repository: GetCategoriesRepo
 ) {
-    suspend fun execute(page: Page): Pair<List<String>, String?> {
-        return repository.get(page)
+    suspend fun execute(): Pair<List<String>, String?> {
+        return repository.get()
     }
 }

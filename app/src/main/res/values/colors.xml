@@ -12,5 +12,7 @@
     <color name="button_text_color">#818C99</color>
     <color name="iv_color">#909499</color>
     <color name="button_ripple_color">#C2C2C2</color>
+    <color name="color_unchecked">#F4F4F4</color>
+    <color name="color_checked">#C2C2C2</color>
 
 </resources>

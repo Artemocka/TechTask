@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dracul.techtask.databinding.FragmentMainBinding
+import com.dracul.techtask.screens.main.chiprecycler.ChipsAdapter
 import com.dracul.techtask.screens.main.recycler.ProductAdapter
 import com.dracul.techtask.screens.main.state.State
 import com.dracul.techtask.viewmodels.MainViewModel
@@ -21,15 +22,22 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 
-class MainFragment : Fragment(), ProductAdapter.OnItemListener {
+class MainFragment : Fragment(), ProductAdapter.OnItemListener, ChipsAdapter.OnChipListner {
     private lateinit var binding: FragmentMainBinding
     private val viewModel by viewModels<MainViewModel>()
     private val adapter = ProductAdapter(this)
+    private val chipsAdapter = ChipsAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             viewModel.listProduct.collect {
                 adapter.submitList(it)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.categories.collect{
+                chipsAdapter.submitList(it)
+                Log.e("", it.toString())
             }
         }
     }
@@ -69,6 +77,8 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener {
             rvList.layoutManager = GridLayoutManager(context, 2)
             rvList.adapter = adapter
             rvList.setHasFixedSize(true)
+            chipRv.adapter = chipsAdapter
+            chipRv.itemAnimator = null
             binding.btnTryAgain.setOnClickListener {
                 viewModel.reloadPage()
             }
@@ -85,5 +95,10 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener {
 
     override fun onEnd() {
         viewModel.nextPage()
+    }
+
+    override fun onChipChecked(category: String) {
+        viewModel.setCategoryFilter(category)
+        Log.e("","chip checked")
     }
 }
