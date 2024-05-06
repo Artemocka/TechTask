@@ -94,7 +94,9 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener, ChipsAdapter.OnC
     }
 
     override fun onEnd() {
-        viewModel.nextPage()
+        if (viewModel.selectedCategory.value==null)
+            viewModel.nextPage()
+
     }
 
     override fun onChipChecked(category: String) {

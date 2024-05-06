@@ -3,14 +3,19 @@ package com.dracul.techtask.di
 
 import com.dracul.techtask.data.api.ProductApi
 import com.dracul.techtask.data.repository.GetCategoriesImpl
+import com.dracul.techtask.data.repository.GetCategoryProductsImpl
 import com.dracul.techtask.data.repository.GetPageImpl
+import com.dracul.techtask.data.storage.impl.NetworkCategoryProductsStorage
 import com.dracul.techtask.data.storage.impl.NetworkCategoryStorage
 import com.dracul.techtask.data.storage.impl.NetworkPageStorage
 import com.dracul.techtask.data.storage.interfaces.CategoriesStorage
+import com.dracul.techtask.data.storage.interfaces.CategoryProductsStorage
 import com.dracul.techtask.data.storage.interfaces.PageStorage
 import com.dracul.techtask.domain.repository.GetCategoriesRepo
+import com.dracul.techtask.domain.repository.GetCategoryProductsRepo
 import com.dracul.techtask.domain.repository.GetPageRepo
 import com.dracul.techtask.domain.usecase.GetCategoriesUseCase
+import com.dracul.techtask.domain.usecase.GetCategoryProductsUseCase
 import com.dracul.techtask.domain.usecase.GetPageUseCase
 import dagger.Module
 import dagger.Provides
@@ -53,6 +58,19 @@ object AppModule {
     @Provides
     fun provideGetCategoriesRepo(storage: CategoriesStorage): GetCategoriesRepo {
         return GetCategoriesImpl(storage)
+    }
+    @Provides
+    fun provideGetCategoryProductsUseCase(repo: GetCategoryProductsRepo): GetCategoryProductsUseCase {
+        return GetCategoryProductsUseCase(repo)
+    }
+    @Provides
+    fun provideCategoryProductsNetworkStorage(api: ProductApi): CategoryProductsStorage {
+        return NetworkCategoryProductsStorage(api)
+    }
+
+    @Provides
+    fun provideGetCategoryProductsRepo(storage: CategoryProductsStorage): GetCategoryProductsRepo {
+        return GetCategoryProductsImpl(storage)
     }
     @Provides
     fun provideGetCategoriesUseCase(repo: GetCategoriesRepo): GetCategoriesUseCase {
