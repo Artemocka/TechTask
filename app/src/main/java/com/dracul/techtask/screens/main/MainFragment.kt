@@ -40,6 +40,7 @@ class MainFragment : Fragment(), ProductAdapter.OnItemListener {
         binding = FragmentMainBinding.inflate(layoutInflater)
         lifecycleScope.launch {
             viewModel.error.collect {
+                Log.e("","collecting: $it")
                 if (it.isNotEmpty()) {
                     Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
                     binding.tvError.text = it

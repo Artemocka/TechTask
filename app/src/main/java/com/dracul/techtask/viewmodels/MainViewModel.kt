@@ -8,7 +8,8 @@ import com.dracul.techtask.domain.models.Page
 import com.dracul.techtask.domain.models.Product
 import com.dracul.techtask.domain.usecase.GetPageUseCase
 import com.dracul.techtask.screens.main.state.State
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +20,7 @@ class MainViewModel : ViewModel() {
     private var page = Page(0)
 
     val listProduct = MutableStateFlow<List<Product>>(emptyList())
-    val error = MutableStateFlow<String>("")
+    val error = MutableSharedFlow<String>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val state = MutableStateFlow<State>(State.Main)
 
     init {
@@ -29,19 +30,25 @@ class MainViewModel : ViewModel() {
 
     private fun getProducts() {
 
-        viewModelScope.launch(Dispatchers.Main.immediate) {
+        viewModelScope.launch {
             val pair = getPageUseCase.execute(page)
-            listProduct.value += pair.first
             when {
                 pair.second != null && listProduct.value.isEmpty() -> {
                     state.value = State.Error
-                    error.value = pair.second!!
+                    error.emit(pair.second!!)
+                    val index = page.index
+                    page = page.copy(index = index.dec())
                 }
+
+                pair.second != null -> {
+                    error.emit(pair.second!!)
+                    val index = page.index
+                    page = page.copy(index = index.dec())
+                }
+
                 pair.second == null -> {
                     state.value = State.Main
-                }
-               pair.second!=null -> {
-                    error.value = pair.second!!
+                    listProduct.value += pair.first
                 }
             }
         }
@@ -56,5 +63,6 @@ class MainViewModel : ViewModel() {
     fun reloadPage() {
         getProducts()
     }
+
 
 }
