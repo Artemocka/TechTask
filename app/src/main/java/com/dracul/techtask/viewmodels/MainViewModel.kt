@@ -13,6 +13,7 @@ import com.dracul.techtask.domain.usecase.GetCategoryProductsUseCase
 import com.dracul.techtask.domain.usecase.GetPageUseCase
 import com.dracul.techtask.screens.main.state.State
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,9 +47,12 @@ class MainViewModel : ViewModel() {
         getProducts()
         getCategories()
         viewModelScope.launch {
+            var job: Job? = null
             selectedCategory.collect {
+                job?.cancel()
+                job = null
                 if (it != null) {
-                    val job = launch {
+                    job = launch {
                         val response = getCategoryProductsUseCase.execute(it)
 
                         when {

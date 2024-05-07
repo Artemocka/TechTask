@@ -2,10 +2,8 @@ package com.dracul.techtask.data.storage.impl
 
 import com.dracul.techtask.data.api.ProductApi
 import com.dracul.techtask.data.storage.interfaces.CategoryProductsStorage
-import com.dracul.techtask.data.storage.interfaces.PageStorage
-import com.dracul.techtask.domain.models.Page
 import com.dracul.techtask.domain.models.Product
-import com.dracul.techtask.domain.models.Products
+import kotlinx.coroutines.CancellationException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -24,7 +22,9 @@ class NetworkCategoryProductsStorage @Inject constructor(
             errorMessage ="No internet connections!"
         } catch (e: SocketTimeoutException) {
             errorMessage="Bad internet connections"
-        } catch (e: Exception) {
+        }catch (_: CancellationException) {
+        }
+        catch (e: Exception) {
             errorMessage="Unknown error"
         }
 

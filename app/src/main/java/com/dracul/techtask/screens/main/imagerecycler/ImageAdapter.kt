@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.dracul.techtask.R
 import com.dracul.techtask.databinding.ItemImageBinding
 
 
@@ -26,8 +27,6 @@ class ImageAdapter : ListAdapter<String, ImageAdapter.ViewHolder>(ImageItemCallB
             LayoutInflater.from(parent.context), parent, false
         )
         val viewHolder = ViewHolder(binding)
-
-
         return viewHolder
 
     }
@@ -42,7 +41,12 @@ class ImageAdapter : ListAdapter<String, ImageAdapter.ViewHolder>(ImageItemCallB
     class ViewHolder(private val binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
             binding.run {
-                Glide.with(binding.root).load(item).transition(DrawableTransitionOptions.withCrossFade()) .into(thumbnail)
+                Glide
+                    .with(binding.root)
+                    .load(item)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .into(thumbnail)
             }
         }
     }
